@@ -8,7 +8,7 @@ The repository is composed by:
 - Authorization.Core: it contains common components for both AuthorizationServer and ResourceServer
 - AuthorizationServer: it provides the jwt
 - ResourceServer: it uses the jwt for accessing to resource endpoints
-- OAuthMyLabService: provides the jwt
+- OAuthMyLabService: it provides the jwt
 
 The AuthorizationServer and OAuthMyLabService do the same function, they provide the jwt for ResourceServer.
 
