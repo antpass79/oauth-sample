@@ -3,12 +3,17 @@ using Microsoft.IdentityModel.Tokens;
 using OAuthMyLabService.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace OAuthMyLabService.Services
 {
     public class TokenService : ITokenService
     {
+        private readonly IClientSecretEncoder _clientSecretDecoder;
+
+        public TokenService(
+            IClientSecretEncoder clientSecretDecoder)
+            => _clientSecretDecoder = clientSecretDecoder;
+
         public Task<string> BuildTokenAsync(Credentials credentials, OAuthSettings settings)
         {
             var claims = new[] {
@@ -22,8 +27,8 @@ namespace OAuthMyLabService.Services
             if (audience == null)
                 return Task.FromResult(string.Empty);
 
-            var symmetricKeyAsBase64 = audience.ClientSecret ?? string.Empty;
-            var keyByteArray = WebEncoders.Base64UrlDecode(symmetricKeyAsBase64);
+            var symmetricKeyAsBase64 = audience.Key ?? string.Empty;
+            var keyByteArray = _clientSecretDecoder.Decode(symmetricKeyAsBase64);
 
             var securityKey = new SymmetricSecurityKey(keyByteArray);
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);

@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Models\AppSettingsModel.cs" />
     <Compile Include="Models\ClientCredentials.cs" />
+    <Compile Include="Models\IssuerProvider.cs" />
     <Compile Include="OAuth\ToggleAuthorizeAttribute.cs" />
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\JsonFileSettingsService.cs" />

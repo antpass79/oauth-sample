@@ -38,7 +38,7 @@ namespace AuthorizationServer.OAuth
 
             Audience audience = _audienceStore.Find(audienceClientId);
 
-            string symmetricKeyAsBase64 = audience.ClientSecret;
+            string symmetricKeyAsBase64 = audience.Key;
 
             var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
 

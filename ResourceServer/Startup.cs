@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using ResourceServer.Models;
 using ResourceServer.Services;
+using System.Linq;
 using System.Web.Http;
 
 [assembly: OwinStartup(typeof(ResourceServer.Startup))]
@@ -39,19 +40,18 @@ namespace ResourceServer
 			var settingsService = WebServiceLocator.Resolve<ISettingsService>();
 			var clientCredentials = settingsService.ReadClientCredentials();
 
-			var issuer = clientCredentials.Issuer;
 			var audience = clientCredentials.Audience;
-			var secret = TextEncodings.Base64Url.Decode(clientCredentials.ClientSecret);
 
 			app.UseJwtBearerAuthentication(
 				new JwtBearerAuthenticationOptions
 				{
 					AuthenticationMode = AuthenticationMode.Active,
 					AllowedAudiences = new[] { audience },
-					IssuerSecurityKeyProviders = new IIssuerSecurityKeyProvider[]
-					{
-						new SymmetricKeyIssuerSecurityKeyProvider(issuer, secret)
-					}
+					IssuerSecurityKeyProviders = clientCredentials
+						.IssuerProviders
+						.Select(issuerProvider => new SymmetricKeyIssuerSecurityKeyProvider(
+							issuerProvider.Issuer,
+							TextEncodings.Base64Url.Decode(issuerProvider.Key)))
 				});
 		}
 	}
