@@ -1,6 +1,6 @@
 # oauth-sample
 
-The repository provides two authentication servers (.NET Frameowork 4.6.2 and .NET 6) and one resource server (.NET Framework 4.6.2)
+The repository provides two authentication servers (.NET Framework 4.6.2 and .NET 6) and one resource server (.NET Framework 4.6.2)
 
 ## Projects
 
@@ -15,10 +15,10 @@ The AuthorizationServer and OAuthMyLabService do the same function, they provide
 
 The difference is in the implementation:
 
-- AuthorizationServer is based on .NET Framework 4.6.2, as ResourceServer
+- AuthorizationServer is based on .NET Framework 4.6.2 (as ResourceServer)
 - OAuthMyLabService is based on .NET 6
 
-OAuthMyLabService is able to provide jtw for ResourceServer also.
+OAuthMyLabService is able to provide jwt for ResourceServer also.
 
 ## References
 
