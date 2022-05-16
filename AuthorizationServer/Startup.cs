@@ -18,8 +18,6 @@ namespace AuthorizationServer
 {
     public class Startup
 	{
-		public static OAuthBearerAuthenticationOptions OAuthBearerAuthenticationOptions { get; private set; }
-
 		public void Configuration(IAppBuilder app)
 		{
 			var configuration = new HttpConfiguration();

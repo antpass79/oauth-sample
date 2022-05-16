@@ -2,6 +2,12 @@
 
 OAuth service to provide jwt for resource services
 
+## How to manage a trusted certificate
+
+	dotnet user-secrets -p oauthmylabservice.csproj set "Kestrel:Certificates:Development:Password" "<<mypassword>>"
+
+	dotnet dev-certs https --trust
+
 ## How to run docker image
 
 Follow these steps:

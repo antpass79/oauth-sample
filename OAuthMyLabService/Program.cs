@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using OAuthMyLabService.Extensions;
 using OAuthMyLabService.Models;
 using OAuthMyLabService.Services;
 using System.Security.Authentication;

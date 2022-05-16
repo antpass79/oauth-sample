@@ -1,6 +1,4 @@
-﻿using Authorization.Core.Services;
-using ResourceServer.Models;
-using ResourceServer.OAuth;
+﻿using ResourceServer.OAuth;
 using ResourceServer.Services;
 using System.Web.Http;
 using System.Web.Mvc;

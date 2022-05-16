@@ -75,7 +75,7 @@ namespace OAuthMyLabService.Extensions
                     store.Open(OpenFlags.ReadOnly);
                     var certificate = store.Certificates.Find(
                         X509FindType.FindBySubjectName,
-                        config.Host,
+                        config.Host ?? String.Empty,
                         validOnly: !environment.IsDevelopment());
 
                     if (certificate.Count == 0)
@@ -98,12 +98,12 @@ namespace OAuthMyLabService.Extensions
 
     public class EndpointConfiguration
     {
-        public string Host { get; set; }
+        public string? Host { get; set; }
         public int? Port { get; set; }
-        public string Scheme { get; set; }
-        public string StoreName { get; set; }
-        public string StoreLocation { get; set; }
-        public string FilePath { get; set; }
-        public string Password { get; set; }
+        public string? Scheme { get; set; }
+        public string? StoreName { get; set; }
+        public string? StoreLocation { get; set; }
+        public string? FilePath { get; set; }
+        public string? Password { get; set; }
     }
 }

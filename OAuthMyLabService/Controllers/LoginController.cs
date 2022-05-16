@@ -29,15 +29,15 @@ namespace OAuthMyLabService.Controllers
         async public Task<IActionResult> Post(Credentials credentials)
         {
             if (!ModelState.IsValid)
-                return Unauthorized();
+                return Unauthorized("Invalid model");
 
             var logged = await _loginService.LoginAsync(credentials);
             if (!logged)
-                return Unauthorized();
+                return Unauthorized("Invalid login");
 
             var token = await _tokenService.BuildTokenAsync(credentials, _options.Value);
             if (string.IsNullOrWhiteSpace(token))
-                return Unauthorized();
+                return Unauthorized("Invalid token");
 
             return Ok(new
             {
